@@ -1,0 +1,1 @@
+A utility that compresses a file using the Huffman algorithm.
