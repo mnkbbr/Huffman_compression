@@ -36,9 +36,9 @@ std::string GetCompressedString(const std::string & str, const std::map<char, st
 
 std::pair<std::string, std::map<char, std::string>> compress(const std::string & text);
 
-
+void WriteTableData(std::ofstream & file, const std::map<char, std::string> &table);
 
 // remake
-std::string decode(const std::string& bin_str,  const std::map<char, std::string> & CodeTable);
+std::string decode(const std::string& bin_str, const std::map<char, std::string> & CodeTable);
 
 #endif
