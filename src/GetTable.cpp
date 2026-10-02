@@ -2,11 +2,8 @@
 std::map<char, std::string> GetTable(const std::string &str){
     std::map<char, unsigned int>  table;
     for (const char & ch : str ){
-        auto a = table.insert(std::make_pair(ch, 1));
-        if (!a.second){
-            auto &tmp = *a.first;
-            tmp.second += 1;
-        }
+        auto TableElement = table.insert(std::make_pair(ch, 1));
+        if (!TableElement.second) TableElement.first->second += 1;
     }
 
     std::priority_queue<Node *, std::vector<Node *>, compare> pq;

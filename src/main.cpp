@@ -1,12 +1,12 @@
 #include "utils.h"
 
 int main(int argc, const char ** argv){
-    unsigned int TextLength;
     std::string text;
 
     if (argc < 2 || argc > 2)
     {
         std::cout<<"./Huff <file_path>"<<std::endl;
+        return 0;
     }
     
     std::ifstream ReadFile;
@@ -20,7 +20,6 @@ int main(int argc, const char ** argv){
         {
             text += ch;
         }
-        TextLength = text.length();
         ReadFile.close();
     }
     catch(const std::ios_base::failure& e)
@@ -30,7 +29,7 @@ int main(int argc, const char ** argv){
         return -1;
     }
     auto result = compress(text);
-    unsigned int TableSize = result.second.size();
+
     std::ofstream WriteFile;
     WriteFile.open("compressed.huff");
     if (!WriteFile.is_open())
@@ -38,6 +37,7 @@ int main(int argc, const char ** argv){
         std::cerr <<"Error: the file("<<argv[1]<<") is corrupted or cannot be opened"<<'\n';
         return -1;
     }
+    WriteFile<<"HUFF";
     WriteTableData(WriteFile, result.second);
     
     
