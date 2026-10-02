@@ -1,29 +1,30 @@
 #include "utils.h"
+#define WriteByte(i, value, bitsize) if (*i == '1'){value |= (1<<bitsize);++bitsize;}else{++bitsize;}
 void WriteTableData(std::ofstream & file, const std::map<char, std::string> & table){
     unsigned short int TableSize = table.size();
     file.write((char*)&TableSize, sizeof(TableSize));
     for (const auto & el : table){
-        unsigned short int compressedvalue = 0;
+
+        int value4b=0;
         char bitsize = 0;
         for (auto i = el.second.crbegin(); i != el.second.crend(); ++i)
         {
-            // if (counter > 8) add dynamic size
-            // {
-
-            // }
-            
             if (*i == '1')
             {
-                compressedvalue |= (1<<bitsize);
+                value4b |= (1<<bitsize);
                 ++bitsize;
             }
             else {
                 ++bitsize;
             }
         }
-        file<<bitsize;
-        file.write((char*)&compressedvalue, sizeof(compressedvalue));
-        file<<el.first;
-        compressedvalue = bitsize =0;
+        file.put(bitsize);
+
+        if (bitsize > 24)file.write((char*)&value4b, 4);
+        else if(bitsize > 16)file.write((char*)&value4b, 3);
+        else if(bitsize > 8) file.write((char*)&value4b, 2);
+        else file.write((char*)&value4b, 1);
+        
+        file.put(el.first);
     }
 }

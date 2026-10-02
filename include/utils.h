@@ -30,19 +30,25 @@ std::map<T2, T1> SwapKeyValue(const std::map<T1, T2> & input){
 
 void FreeTree(Node *& root);
 
+
+
 void WriteCodes(Node * root, const std::string & str, std::map<char, std::string> &CodesTable);
 std::map<char, std::string> GetTable(const std::string &str);
 std::string GetCompressedString(const std::string & str, const std::map<char, std::string> & CodesTable);
 
-std::pair<std::string, std::map<char, std::string>> compress(const std::string & text);
+
+std::pair<std::string, std::map<char, std::string>> CompressData(const std::string & text);
+
+
 
 void WriteTableData(std::ofstream & file, const std::map<char, std::string> &table);
+void WriteCompressedText(std::ofstream & file, const std::string & data);
+
+bool compress(const char * argv);
 
 // remake
 std::string decode(const std::string& bin_str, const std::map<char, std::string> & CodeTable);
 
-//remaked
-void WriteCompressedText(std::ofstream & file, const std::string & data);
 
 
 #endif

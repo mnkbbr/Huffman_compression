@@ -13,14 +13,14 @@ void WriteCompressedText(std::ofstream & file, const std::string & data){
         else ++bit_counter;
         if (bit_counter == 7)
         {
-            file<<buffer;
+            file.put(buffer);
             buffer = bit_counter = 0;
         }
     }
     if (bit_counter != 0)
     {
         buffer = buffer << (7-bit_counter);
-        file<<buffer;
+        file.put(buffer);
         bit_counter = buffer = 0;
     }
 }

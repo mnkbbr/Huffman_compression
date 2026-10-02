@@ -1,44 +1,21 @@
 #include "utils.h"
 
 int main(int argc, const char ** argv){
-    std::string text;
 
-    if (argc < 2 || argc > 2)
+    if (argc < 3 || argc > 3)
     {
-        std::cout<<"./Huff <file_path>"<<std::endl;
+        std::cout<<"./Huff <flag> <file_path>\n"<<std::endl;
+        std::cout<<"Flags:\n";
+        std::cout<<"-c for compress file\n-d for decompress file"<<std::endl;
         return 0;
     }
-    
-    std::ifstream ReadFile;
-    ReadFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-    try
+    if (argv[1] == "-c")
     {
-        ReadFile.open(argv[1]);
-        char ch;
-        ReadFile.exceptions(std::ifstream::badbit);
-        while (ReadFile.get(ch))
-        {
-            text += ch;
-        }
-        ReadFile.close();
+        if (!compress(argv[2])) return -1;
     }
-    catch(const std::ios_base::failure& e)
+    else if (argv[1] == "-d")
     {
-        std::cerr <<"Error: the file("<<argv[1]<<") is corrupted or cannot be opened"<<'\n';
-        std::cerr << "Reason: " << e.what() << '\n'<<"Code: "<<e.code() << '\n';
-        return -1;
+        //WIP
     }
-    auto result = compress(text);
 
-    std::ofstream WriteFile;
-    WriteFile.open("compressed.huff");
-    if (!WriteFile.is_open())
-    {
-        std::cerr <<"Error: the file("<<argv[1]<<") is corrupted or cannot be opened"<<'\n';
-        return -1;
-    }
-    WriteFile<<"HUFF";
-    WriteTableData(WriteFile, result.second);
-    WriteCompressedText(WriteFile, result.first);
-    std::cout<<result.first<<std::endl;
 }

@@ -11,6 +11,7 @@ add_executable(Huff
     src/WriteCodes.cpp
     src/WriteTableData.cpp
     src/WriteCompressedText.cpp
+    src/CompressData.cpp
 )
 
 target_include_directories(Huff PRIVATE include)
