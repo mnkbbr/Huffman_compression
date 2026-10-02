@@ -10,6 +10,7 @@ add_executable(Huff
     src/GetTable.cpp
     src/WriteCodes.cpp
     src/WriteTableData.cpp
+    src/WriteCompressedText.cpp
 )
 
 target_include_directories(Huff PRIVATE include)

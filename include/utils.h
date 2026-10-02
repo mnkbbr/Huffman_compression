@@ -41,4 +41,8 @@ void WriteTableData(std::ofstream & file, const std::map<char, std::string> &tab
 // remake
 std::string decode(const std::string& bin_str, const std::map<char, std::string> & CodeTable);
 
+//remaked
+void WriteCompressedText(std::ofstream & file, const std::string & data);
+
+
 #endif

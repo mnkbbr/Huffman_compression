@@ -39,8 +39,6 @@ int main(int argc, const char ** argv){
     }
     WriteFile<<"HUFF";
     WriteTableData(WriteFile, result.second);
-    
-    
-    
-    
+    WriteCompressedText(WriteFile, result.first);
+    std::cout<<result.first<<std::endl;
 }

@@ -24,7 +24,6 @@ void WriteTableData(std::ofstream & file, const std::map<char, std::string> & ta
         file<<bitsize;
         file.write((char*)&compressedvalue, sizeof(compressedvalue));
         file<<el.first;
-        bitsize = 0;
-        compressedvalue = 0;
+        compressedvalue = bitsize =0;
     }
 }
