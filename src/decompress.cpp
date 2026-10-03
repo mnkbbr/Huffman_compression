@@ -40,10 +40,6 @@ void decompress(const char * argv){
         std::cerr <<"Error: the file("<<argv<<") is corrupted or cannot be opened"<<'\n';
         return;
     }
-    for (auto & el : vector_table){
-        std::cout<< el.made_char <<' '<<(char)el.ch<<std::endl;
-    }
-
     ReadWriteData(ReadFile, vector_table, WriteFile);
     
     delete [] huff;

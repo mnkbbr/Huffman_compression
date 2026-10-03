@@ -44,9 +44,4 @@ void compress(const char * argv){
     WriteTableData(WriteFile, result.second);
     WriteCompressedText(WriteFile, result.first);
     WriteFile.close();
-// tmp 
-for (auto & el : result.second ){
-    std::cout<<el.first<<' '<<el.second<<std::endl;
-}
-
 }
