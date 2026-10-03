@@ -44,9 +44,9 @@ std::pair<std::string, std::map<char, std::string>> CompressData(const std::stri
 void WriteTableData(std::ofstream & file, const std::map<char, std::string> &table);
 void WriteCompressedText(std::ofstream & file, const std::string & data);
 
-bool compress(const char * argv);
+void compress(const char * argv);
 
-// remake
+// remake - remove
 std::string decode(const std::string& bin_str, const std::map<char, std::string> & CodeTable);
 
 
@@ -58,10 +58,11 @@ struct  Bits
     std::string made_char;
 };
 
-std::vector<Bits> ReadTable(std::ifstream & ReadFile);
-
 void ConvertBTS(std::vector<Bits> & vec);
 
+std::vector<Bits> ReadTable(std::ifstream & ReadFile);
+void ReadWriteData(std::ifstream & ReadFile, const std::vector<Bits> &BitsTable, std::ofstream & WriteFile);
 
+void decompress(const char * argv);
 
 #endif

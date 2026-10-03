@@ -9,14 +9,12 @@ int main(int argc, const char ** argv){
         std::cout<<"-c for compress file\n-d for decompress file"<<std::endl;
         return 0;
     }
-    if (argv[1] == "-c")
-    {
-        if (!compress(argv[2])) return -1;
-    }
-    else if (argv[1] == "-d")
-    {
-        //WIP
-    }
+    std::string flag = argv[1];
+    if (flag== "-c")
+        compress(argv[2]);
+
+    else if (flag == "-d")
+        decompress(argv[2]);
 
 }
 

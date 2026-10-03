@@ -1,5 +1,5 @@
 #include "utils.h"
-bool compress(const char * argv){
+void compress(const char * argv){
     std::string text;
     std::ifstream ReadFile;
     ReadFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -18,7 +18,7 @@ bool compress(const char * argv){
     {
         std::cerr <<"Error: the file("<<argv[1]<<") is corrupted or cannot be opened"<<'\n';
         std::cerr << "Reason: " << e.what() << '\n'<<"Code: "<<e.code() << '\n';
-        return false;
+        return;
     }
     auto result = CompressData(text);
 
@@ -27,7 +27,7 @@ bool compress(const char * argv){
     if (!WriteFile.is_open())
     {
         std::cerr <<"Error: the file("<<argv[1]<<") is corrupted or cannot be opened"<<'\n';
-        return false;
+        return ;
     }
     WriteFile.write("HUFF", 4);
 
@@ -44,5 +44,9 @@ bool compress(const char * argv){
     WriteTableData(WriteFile, result.second);
     WriteCompressedText(WriteFile, result.first);
     WriteFile.close();
-    return true;
+// tmp 
+for (auto & el : result.second ){
+    std::cout<<el.first<<' '<<el.second<<std::endl;
+}
+
 }
