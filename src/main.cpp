@@ -19,3 +19,28 @@ int main(int argc, const char ** argv){
     }
 
 }
+
+/*   compressed file architecture
+*
+*
+*
+*    first 4 bytes - HUFF - extension code
+*
+*    1 byte - file_name_size 
+*    file_name_size bytes - file_name
+*
+*    2 bytes table_size
+*    table_size *
+*     {
+*      1 byte - number_of_bits
+*      1-4 bytes - compressed_char
+*      1 byte - char
+*     } 
+*    bytes
+*
+*    8 bytes(size_t) - compressed_data_size
+*    compressed_data_size bytes  - compressed_data
+*
+*
+*
+*/ 

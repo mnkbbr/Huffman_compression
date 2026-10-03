@@ -50,5 +50,18 @@ bool compress(const char * argv);
 std::string decode(const std::string& bin_str, const std::map<char, std::string> & CodeTable);
 
 
+struct  Bits
+{
+    char number_of_bits= 0;
+    int compressed_char = 0;
+    char ch = 0;
+    std::string made_char;
+};
+
+std::vector<Bits> ReadTable(std::ifstream & ReadFile);
+
+void ConvertBTS(std::vector<Bits> & vec);
+
+
 
 #endif

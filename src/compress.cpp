@@ -30,7 +30,19 @@ bool compress(const char * argv){
         return false;
     }
     WriteFile.write("HUFF", 4);
+
+    std::string filename = argv;
+
+    auto file_erase_it = std::find(filename.rbegin(), filename.rend(),'/');
+    if (file_erase_it != filename.rend()) 
+        filename.erase(filename.begin(), file_erase_it.base());
+
+    char length = filename.length();
+    WriteFile.put(length);
+    WriteFile.write(filename.c_str(), length);
+
     WriteTableData(WriteFile, result.second);
     WriteCompressedText(WriteFile, result.first);
+    WriteFile.close();
     return true;
 }
